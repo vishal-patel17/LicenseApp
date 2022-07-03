@@ -1,5 +1,7 @@
 import './App.css';
 
+import { ethers } from "ether";
+
 function App() {
   return (
     <div class="mainscreen">

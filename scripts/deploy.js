@@ -1,5 +1,7 @@
 // Deploying to the local network 
 
+const path = require("path");
+
 async function main() {
     const [deployer] = await ethers.getSigners();
 
