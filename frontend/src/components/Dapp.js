@@ -94,19 +94,6 @@ export class Dapp extends React.Component {
 
         <div className="row">
           <div className="col-12">
-            {/*
-              If the user has no tokens, we don't show the Transfer form
-            */}
-            {/* {this.state.balance.eq(0) && (
-              <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )} */}
-
-            {/*
-              This component displays a form that the user can use to send a 
-              transaction and transfer some tokens.
-              The component doesn't have logic, it just calls the transferTokens
-              callback.
-            */}
             {(
               <Transfer
                 transferTokens={(address) =>
@@ -115,6 +102,21 @@ export class Dapp extends React.Component {
                 tokenSymbol={this.state.tokenData.symbol}
               />
             )}
+          </div>
+          <hr />
+          <div className="col-12">
+            <p>Your Token number: 0</p>
+          </div>
+          <hr />
+          <div className="col-12">
+            <p>Token Current State: INACTIVE</p>
+          </div>
+          <hr />
+          <div className="col-12">
+            <button onClick={(event) => {
+              event.preventDefault();
+              this._activateLicense("0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc", 0);
+            }} className="btn btn-success">Activate License</button>
           </div>
         </div>
       </div>
@@ -282,6 +284,10 @@ export class Dapp extends React.Component {
       // this part of the state.
       // this.setState({ txBeingSent: undefined });
     }
+  }
+
+  async _activateLicense(address, tokenId) {
+    console.log("Activate License called");
   }
 
   // This method just clears part of the state.
