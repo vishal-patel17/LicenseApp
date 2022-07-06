@@ -20,7 +20,7 @@ Run the following commands in your terminal ir Git bash cmd:
   cd LicenseApp
   npm install
 ```
-Once installed, let run [Hardhat's](https://hardhat.org/) testing network:
+Once installed, let's run [Hardhat's](https://hardhat.org/) testing network:
 ```bash
   npx hardhat node
 ```
