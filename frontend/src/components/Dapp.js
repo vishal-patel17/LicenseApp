@@ -13,7 +13,7 @@ import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 // import { NoTokensMessage } from "./NoTokensMessage";
 
-const HARDHAT_NETWORK_ID = '1337';
+const HARDHAT_NETWORK_ID = "1337";
 
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
 
@@ -28,13 +28,14 @@ export class Dapp extends React.Component {
       txBeingSent: undefined,
       transactionError: undefined,
       networkError: undefined,
+      tokenId: undefined,
+      userAccount: undefined,
     };
 
     this.state = this.initialState;
   }
 
   render() {
-
     if (window.ethereum === undefined) {
       return <NoWalletDetected />;
     }
@@ -59,10 +60,7 @@ export class Dapp extends React.Component {
       <div className="container p-4">
         <div className="row">
           <div className="col-12">
-            <h1>
-              UltraTax CS Express 100
-            </h1>
-
+            <h1>UltraTax CS Express 100</h1>
           </div>
         </div>
 
@@ -94,29 +92,51 @@ export class Dapp extends React.Component {
 
         <div className="row">
           <div className="col-12">
-            {(
+            {
               <Transfer
-                transferTokens={(address) =>
-                  this._transferTokens(address)
-                }
+                transferTokens={(address) => this._transferTokens(address)}
                 tokenSymbol={this.state.tokenData.symbol}
               />
-            )}
+            }
+          </div>
+          <hr />
+          {this.state.tokenId && (
+            <div className="col-12">
+              Your Token number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
+              <br />
+              Your account: <b>{this.state.userAccount}</b>
+              <br />
+            </div>
+          )}
+          <hr />
+          <div className="col-12">
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                this._isLicenseActive(
+                  "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+                  10
+                );
+              }}
+              className="btn btn-warning"
+            >
+              Check License Status
+            </button>
           </div>
           <hr />
           <div className="col-12">
-            <p>Your Token number: 0</p>
-          </div>
-          <hr />
-          <div className="col-12">
-            <p>Token Current State: INACTIVE</p>
-          </div>
-          <hr />
-          <div className="col-12">
-            <button onClick={(event) => {
-              event.preventDefault();
-              this._activateLicense("0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc", 0);
-            }} className="btn btn-success">Activate License</button>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                this._activateLicense(
+                  "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+                  0
+                );
+              }}
+              className="btn btn-success"
+            >
+              Activate License
+            </button>
           </div>
         </div>
       </div>
@@ -130,7 +150,9 @@ export class Dapp extends React.Component {
   }
 
   async _connectWallet() {
-    const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const [selectedAddress] = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
 
     if (!this._checkNetwork()) {
       return;
@@ -144,7 +166,7 @@ export class Dapp extends React.Component {
       // `accountsChanged` event can be triggered with an undefined newAddress.
       // This happens when the user removes the Dapp from the "Connected
       // list of sites allowed access to your addresses" (Metamask > Settings > Connections)
-      // To avoid errors, we reset the dapp state 
+      // To avoid errors, we reset the dapp state
       if (newAddress === undefined) {
         return this._resetState();
       }
@@ -160,7 +182,6 @@ export class Dapp extends React.Component {
   }
 
   _initialize(userAddress) {
-
     this.setState({
       selectedAddress: userAddress,
     });
@@ -197,7 +218,6 @@ export class Dapp extends React.Component {
   // initialize the app, as we do with the token data.
   _startPollingData() {
     // this._pollDataInterval = setInterval(() => this._updateBalance(), 1000);
-
     // We run it once immediately so we don't have to wait for it
     // this._updateBalance();
   }
@@ -255,15 +275,20 @@ export class Dapp extends React.Component {
       // We use .wait() to wait for the transaction to be mined. This method
       // returns the transaction's receipt.
       const receipt = await tx.wait();
-      console.log(receipt);
-
 
       // The receipt, contains a status flag, which is 0 to indicate an error.
-      // if (receipt.status === 0) {
-      //   // We can't know the exact error that made the transaction fail when it
-      //   // was mined, so we throw this generic one.
-      //   throw new Error("Transaction failed");
-      // }
+      if (receipt.status === 0) {
+        // We can't know the exact error that made the transaction fail when it
+        // was mined, so we throw this generic one.
+        throw new Error("Transaction failed");
+      }
+      // console.log(receipt);
+      this._token.on("LicenseGiven", (account, tId) => {
+        this.setState({ tokenId: tId });
+        this.setState({ userAccount: account });
+        console.log("Your account: " + account);
+        console.log("and TokenId: " + this.state.tokenId);
+      });
 
       // If we got here, the transaction was successful, so you may want to
       // update your state. Here, we update the user's balance.
@@ -283,6 +308,16 @@ export class Dapp extends React.Component {
       // If we leave the try/catch, we aren't sending a tx anymore, so we clear
       // this part of the state.
       // this.setState({ txBeingSent: undefined });
+    }
+  }
+
+  async _isLicenseActive(address, tokenId) {
+    var state = await this._token.isLicenseActive(address, tokenId);
+    var value = parseInt(state, 10);
+    if (value === 1) {
+      console.log("INACTIVE");
+    } else if (value === 0) {
+      console.log("ACTIVE");
     }
   }
 
@@ -315,14 +350,14 @@ export class Dapp extends React.Component {
     this.setState(this.initialState);
   }
 
-  // This method checks if Metamask selected network is Localhost:8545 
+  // This method checks if Metamask selected network is Localhost:8545
   _checkNetwork() {
     if (window.ethereum.networkVersion === HARDHAT_NETWORK_ID) {
       return true;
     }
 
     this.setState({
-      networkError: 'Please connect Metamask to Localhost:8545'
+      networkError: "Please connect Metamask to Localhost:8545",
     });
 
     return false;
