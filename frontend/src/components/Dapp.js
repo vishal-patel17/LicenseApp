@@ -30,7 +30,7 @@ export class Dapp extends React.Component {
       networkError: undefined,
       tokenId: undefined,
       userAccount: undefined,
-      LicenseState: "INACTIVE"
+      LicenseState: "INACTIVE",
     };
 
     this.state = this.initialState;
@@ -117,25 +117,38 @@ export class Dapp extends React.Component {
                 const formData = new FormData(event.target);
                 const userAddr = formData.get("publicAddr");
                 const tokenId = formData.get("tokenId");
-                this._isLicenseActive(
-                  userAddr,
-                  tokenId
-                );
+                this._isLicenseActive(userAddr, tokenId);
               }}
             >
               <div className="form-group">
                 <label>Your public address</label>
-                <input type="text" className="form-control" name="publicAddr" defaultValue={this.state.userAccount} />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="publicAddr"
+                  defaultValue={this.state.userAccount}
+                />
               </div>
               <div className="form-group">
                 <label>Enter Token number</label>
-                <input type="number" className="form-control" name="tokenId" placeholder="0" />
+                <input
+                  type="number"
+                  className="form-control"
+                  name="tokenId"
+                  placeholder="0"
+                />
               </div>
               <div className="form-group">
-                <input className="btn btn-warning" type="submit" value="Check License Status" />
+                <input
+                  className="btn btn-warning"
+                  type="submit"
+                  value="Check License Status"
+                />
               </div>
             </form>
-            <p>Your License is currently <b>{this.state.LicenseState}</b></p>
+            <p>
+              Your License is currently <b>{this.state.LicenseState}</b>
+            </p>
           </div>
           <hr />
           <div className="col-12">
@@ -153,7 +166,7 @@ export class Dapp extends React.Component {
             </button>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 
@@ -264,16 +277,13 @@ export class Dapp extends React.Component {
     console.log("Called Give License");
 
     try {
-
       this._dismissTransactionError();
-
 
       const tx = await this._token.giveLicense(address);
 
       const receipt = await tx.wait();
 
       if (receipt.status === 0) {
-
         throw new Error("Transaction failed");
       }
       this._token.on("LicenseGiven", (account, tId) => {
@@ -282,18 +292,13 @@ export class Dapp extends React.Component {
         console.log("Your account: " + account);
         console.log("and TokenId: " + this.state.tokenId);
       });
-
-
     } catch (error) {
-
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
         return;
       }
 
-
       console.error(error);
     } finally {
-
     }
   }
 
@@ -301,10 +306,10 @@ export class Dapp extends React.Component {
     var state = await this._token.isLicenseActive(address, tokenId);
     var value = parseInt(state, 10);
     if (value === 1) {
-      this.setState({ LicenseState: "INACTIVE" })
+      this.setState({ LicenseState: "INACTIVE" });
       console.log("INACTIVE");
     } else if (value === 0) {
-      this.setState({ LicenseState: "ACTIVE" })
+      this.setState({ LicenseState: "ACTIVE" });
       console.log("ACTIVE");
     }
   }
