@@ -1,3 +1,8 @@
 .heading {
     text-align: center;
 }
+
+.ownerAddr {
+    text-align: center;
+    color: rgb(193, 189, 189);
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Transfer({ transferTokens, tokenSymbol }) {
+export function Transfer({ transferTokens }) {
   return (
     <div>
       <form
@@ -12,8 +12,11 @@ export function Transfer({ transferTokens, tokenSymbol }) {
           transferTokens(address);
         }}
       >
+        <div className="heading">
+          <h2>Generating License</h2>
+        </div>
         <div className="form-group">
-          <label>Your public address </label>
+          <label>Public address </label>
           <input
             className="form-control"
             type="string"
@@ -23,29 +26,10 @@ export function Transfer({ transferTokens, tokenSymbol }) {
           />
         </div>
         <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="name@example.com"
-            defaultValue="JohnDoe@abc.com"
-          />
-        </div>
-        <div className="form-group">
-          <label>Card Details</label>
-          <input
-            type="card"
-            className="form-control"
-            id="card"
-            defaultValue="1111-2222-3333-4444"
-          />
-        </div>
-        <div className="form-group">
           <input
             className="btn btn-primary"
             type="submit"
-            value="Purchase License"
+            value="Generate License"
           />
         </div>
       </form>
