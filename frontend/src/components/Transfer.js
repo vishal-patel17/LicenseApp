@@ -6,19 +6,20 @@ export function Transfer({ transferTokens, tokenSymbol }) {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const address = "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc";
+          const formData = new FormData(event.target);
+          const userAddr = formData.get("name");
+          const address = userAddr;
           transferTokens(address);
         }}
       >
         <div className="form-group">
-          <label>Name</label>
+          <label>Welcome </label>
           <input
             className="form-control"
             type="string"
             step="1"
             name="name"
-            placeholder="Name"
-            defaultValue="John Doe"
+            defaultValue="0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
           />
         </div>
         <div className="form-group">
