@@ -30,6 +30,9 @@ export class Dapp extends React.Component {
       tokenId: undefined,
       userAccount: undefined,
       LicenseState: undefined,
+      totalLicenses: undefined,
+      tokenOwner: undefined,
+      totalLicensesProvided: undefined,
     };
 
     this.state = this.initialState;
@@ -172,6 +175,99 @@ export class Dapp extends React.Component {
               </div>
             </form>
           </div>
+          <div className="heading">
+            <h2>Admin Functions</h2>
+          </div>
+          <div className="col-12">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const userAddr = formData.get("publicAddr");
+                this._getBalance(userAddr);
+              }}
+            >
+              <div className="form-group">
+                <label>Enter public address</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="publicAddr"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Get Total Licenses"
+                />
+              </div>
+            </form>
+            {this.state.totalLicenses && (
+              <p>
+                Total Licenses available:{" "}
+                <b>{parseInt(this.state.totalLicenses, 10)}</b>
+              </p>
+            )}
+          </div>
+          <hr />
+          <div className="col-12">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const tokenId = formData.get("tokenId");
+                this._getOwner(tokenId);
+              }}
+            >
+              <div className="form-group">
+                <label>Enter License number</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  name="tokenId"
+                  placeholder="0"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Get Owner"
+                />
+              </div>
+            </form>
+            {this.state.tokenOwner && (
+              <p>
+                Owner of this token is: <b>{this.state.tokenOwner}</b>
+              </p>
+            )}
+          </div>
+          <hr />
+          <div className="col-12">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                this._getTotalSupply();
+              }}
+            >
+              <div className="form-group">
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Get Total Licenses Provided"
+                />
+              </div>
+            </form>
+            {this.state.totalLicensesProvided && (
+              <p>
+                Total Licenses Provided:{" "}
+                <b>{parseInt(this.state.totalLicensesProvided, 10)}</b>
+              </p>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -233,7 +329,7 @@ export class Dapp extends React.Component {
     );
   }
 
-  _startPollingData() { }
+  _startPollingData() {}
 
   _stopPollingData() {
     clearInterval(this._pollDataInterval);
@@ -247,7 +343,6 @@ export class Dapp extends React.Component {
     this.setState({ tokenData: { name, symbol } });
   }
   async _transferTokens(address) {
-
     try {
       this._dismissTransactionError();
 
@@ -299,6 +394,42 @@ export class Dapp extends React.Component {
       }
     }
     alert("License activated successfully");
+  }
+
+  async _getBalance(account) {
+    try {
+      var total = await this._token.balanceOf(account);
+    } catch (error) {
+      alert("Please verify the account number");
+      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+        return;
+      }
+    }
+    this.setState({ totalLicenses: total });
+  }
+
+  async _getOwner(tokenId) {
+    try {
+      var owner = await this._token.ownerOf(tokenId);
+    } catch (error) {
+      alert("Token not available");
+      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+        return;
+      }
+    }
+    this.setState({ tokenOwner: owner });
+  }
+
+  async _getTotalSupply() {
+    try {
+      var total = await this._token.totalSupply();
+    } catch (error) {
+      alert("No Licenses provided");
+      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+        return;
+      }
+    }
+    this.setState({ totalLicensesProvided: total });
   }
 
   _dismissTransactionError() {

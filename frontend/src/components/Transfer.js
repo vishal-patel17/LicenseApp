@@ -42,7 +42,11 @@ export function Transfer({ transferTokens, tokenSymbol }) {
           />
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Purchase License" />
+          <input
+            className="btn btn-primary"
+            type="submit"
+            value="Purchase License"
+          />
         </div>
       </form>
     </div>
