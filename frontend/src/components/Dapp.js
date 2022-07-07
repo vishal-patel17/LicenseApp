@@ -30,6 +30,7 @@ export class Dapp extends React.Component {
       networkError: undefined,
       tokenId: undefined,
       userAccount: undefined,
+      LicenseState: "INACTIVE"
     };
 
     this.state = this.initialState;
@@ -90,7 +91,7 @@ export class Dapp extends React.Component {
           </div>
         </div>
 
-        <div className="row">
+        <div className="column">
           <div className="col-12">
             {
               <Transfer
@@ -106,22 +107,35 @@ export class Dapp extends React.Component {
               <br />
               Your account: <b>{this.state.userAccount}</b>
               <br />
+              <hr />
             </div>
           )}
-          <hr />
-          <div className="col-12">
-            <button
-              onClick={(event) => {
+          <div>
+            <form
+              onSubmit={(event) => {
                 event.preventDefault();
+                const formData = new FormData(event.target);
+                const userAddr = formData.get("publicAddr");
+                const tokenId = formData.get("tokenId");
                 this._isLicenseActive(
-                  "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
-                  10
+                  userAddr,
+                  tokenId
                 );
               }}
-              className="btn btn-warning"
             >
-              Check License Status
-            </button>
+              <div className="form-group">
+                <label>Your public address</label>
+                <input type="text" className="form-control" name="publicAddr" defaultValue={this.state.userAccount} />
+              </div>
+              <div className="form-group">
+                <label>Enter Token number</label>
+                <input type="number" className="form-control" name="tokenId" placeholder="0" />
+              </div>
+              <div className="form-group">
+                <input className="btn btn-warning" type="submit" value="Check License Status" />
+              </div>
+            </form>
+            <p>Your License is currently <b>{this.state.LicenseState}</b></p>
           </div>
           <hr />
           <div className="col-12">
@@ -139,7 +153,7 @@ export class Dapp extends React.Component {
             </button>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 
@@ -248,41 +262,20 @@ export class Dapp extends React.Component {
   // send a transaction.
   async _transferTokens(address) {
     console.log("Called Give License");
-    // Sending a transaction is a complex operation:
-    //   - The user can reject it
-    //   - It can fail before reaching the ethereum network (i.e. if the user
-    //     doesn't have ETH for paying for the tx's gas)
-    //   - It has to be mined, so it isn't immediately confirmed.
-    //     Note that some testing networks, like Hardhat Network, do mine
-    //     transactions immediately, but your dapp should be prepared for
-    //     other networks.
-    //   - It can fail once mined.
-    //
-    // This method handles all of those things, so keep reading to learn how to
-    // do it.
 
     try {
-      // If a transaction fails, we save that error in the component's state.
-      // We only save one such error, so before sending a second transaction, we
-      // clear it.
+
       this._dismissTransactionError();
 
-      // We send the transaction, and save its hash in the Dapp's state. This
-      // way we can indicate that we are waiting for it to be mined.
-      const tx = await this._token.giveLicense(address);
-      // this.setState({ txBeingSent: tx.hash });
 
-      // We use .wait() to wait for the transaction to be mined. This method
-      // returns the transaction's receipt.
+      const tx = await this._token.giveLicense(address);
+
       const receipt = await tx.wait();
 
-      // The receipt, contains a status flag, which is 0 to indicate an error.
       if (receipt.status === 0) {
-        // We can't know the exact error that made the transaction fail when it
-        // was mined, so we throw this generic one.
+
         throw new Error("Transaction failed");
       }
-      // console.log(receipt);
       this._token.on("LicenseGiven", (account, tId) => {
         this.setState({ tokenId: tId });
         this.setState({ userAccount: account });
@@ -290,24 +283,17 @@ export class Dapp extends React.Component {
         console.log("and TokenId: " + this.state.tokenId);
       });
 
-      // If we got here, the transaction was successful, so you may want to
-      // update your state. Here, we update the user's balance.
-      // await this._updateBalance();
+
     } catch (error) {
-      // We check the error code to see if this error was produced because the
-      // user rejected a tx. If that's the case, we do nothing.
+
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
         return;
       }
 
-      // Other errors are logged and stored in the Dapp's state. This is used to
-      // show them to the user, and for debugging.
+
       console.error(error);
-      // this.setState({ transactionError: error });
     } finally {
-      // If we leave the try/catch, we aren't sending a tx anymore, so we clear
-      // this part of the state.
-      // this.setState({ txBeingSent: undefined });
+
     }
   }
 
@@ -315,8 +301,10 @@ export class Dapp extends React.Component {
     var state = await this._token.isLicenseActive(address, tokenId);
     var value = parseInt(state, 10);
     if (value === 1) {
+      this.setState({ LicenseState: "INACTIVE" })
       console.log("INACTIVE");
     } else if (value === 0) {
+      this.setState({ LicenseState: "ACTIVE" })
       console.log("ACTIVE");
     }
   }
