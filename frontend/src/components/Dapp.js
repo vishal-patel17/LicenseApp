@@ -85,18 +85,18 @@ export class Dapp extends React.Component {
               />
             }
           </div>
-          <div className="heading">
-            <h2>Check your License status</h2>
-          </div>
           {this.state.tokenId && (
             <div className="col-12">
-              Your Token number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
+              Your License number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
               <br />
               Your account: <b>{this.state.userAccount}</b>
               <br />
               <hr />
             </div>
           )}
+          <div className="heading">
+            <h2>Check your License status</h2>
+          </div>
           <div className="col-12">
             <form
               onSubmit={(event) => {
@@ -118,7 +118,7 @@ export class Dapp extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label>Enter Token number</label>
+                <label>Enter License number</label>
                 <input
                   type="number"
                   className="form-control"
@@ -154,7 +154,7 @@ export class Dapp extends React.Component {
               }}
             >
               <div className="form-group">
-                <label>Enter Token number</label>
+                <label>Enter License number</label>
                 <input
                   type="number"
                   className="form-control"
@@ -233,7 +233,7 @@ export class Dapp extends React.Component {
     );
   }
 
-  _startPollingData() {}
+  _startPollingData() { }
 
   _stopPollingData() {
     clearInterval(this._pollDataInterval);
@@ -241,15 +241,12 @@ export class Dapp extends React.Component {
   }
 
   async _getTokenData() {
-    // const name = await this._token.name();
     const name = "TR Token";
     const symbol = "TRT";
-    // const symbol = await this._token.symbol();
 
     this.setState({ tokenData: { name, symbol } });
   }
   async _transferTokens(address) {
-    console.log("Called Give License");
 
     try {
       this._dismissTransactionError();
@@ -264,8 +261,6 @@ export class Dapp extends React.Component {
       this._token.on("LicenseGiven", (account, tId) => {
         this.setState({ tokenId: tId });
         this.setState({ userAccount: account });
-        console.log("Your account: " + account);
-        console.log("and TokenId: " + this.state.tokenId);
       });
     } catch (error) {
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
@@ -281,7 +276,7 @@ export class Dapp extends React.Component {
     try {
       var state = await this._token.isLicenseActive(address, tokenId);
     } catch (error) {
-      alert("Invalid tokenId or this token does not belong to you");
+      alert("Invalid License number or this License does not belong to you");
       this.setState({ LicenseState: undefined });
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
         return;

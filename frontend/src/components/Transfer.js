@@ -13,7 +13,7 @@ export function Transfer({ transferTokens, tokenSymbol }) {
         }}
       >
         <div className="form-group">
-          <label>Welcome </label>
+          <label>Your public address </label>
           <input
             className="form-control"
             type="string"
@@ -42,7 +42,7 @@ export function Transfer({ transferTokens, tokenSymbol }) {
           />
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Purchase" />
+          <input className="btn btn-primary" type="submit" value="Purchase License" />
         </div>
       </form>
     </div>
