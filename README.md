@@ -13,7 +13,7 @@ Using blockchain technology for generation, storing and distribution of Licenses
 ## Quick Start
 
 The first things you need to do are cloning this repository and installing its dependencies.
-Run the following commands in your terminal ir Git bash cmd:
+Run the following commands in your terminal or Git bash cmd:
 
 ```bash
   git clone https://github.com/vishal-patel17/LicenseApp.git
@@ -24,7 +24,7 @@ Once installed, let's run [Hardhat's](https://hardhat.org/) testing network:
 ```bash
   npx hardhat node
 ```
-Then, on a new terminal, go to the repository's root folder and run this to deploy your contract:
+Then, on a new terminal, go to the repository's root folder and run this command to deploy your contract to the localhost:
 ```bash
   npx hardhat run scripts/deploy.js --network localhost
 ```
