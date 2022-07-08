@@ -118,7 +118,40 @@ export class Dapp extends React.Component {
           <div className="h-100"></div>
           <div className="col-5 jumbotron">
             <div className="heading">
-              <h2>License Status</h2>
+              <h2>Activate License</h2>
+            </div>
+            <div>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  const formData = new FormData(event.target);
+                  const tokenId = formData.get("tokenId");
+                  this._activateLicense(tokenId);
+                }}
+              >
+                <div className="form-group">
+                  <label>Enter License number</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="tokenId"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="btn btn-success"
+                    type="submit"
+                    value="Activate License"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="col jumbotron">
+            <div className="heading">
+              <h2>License Information</h2>
             </div>
             <div>
               <form
@@ -163,39 +196,6 @@ export class Dapp extends React.Component {
                   Your License is currently <b>{this.state.LicenseState}</b>
                 </p>
               )}
-            </div>
-          </div>
-          <div className="col jumbotron">
-            <div className="heading">
-              <h2>License Functions</h2>
-            </div>
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.target);
-                  const tokenId = formData.get("tokenId");
-                  this._activateLicense(tokenId);
-                }}
-              >
-                <div className="form-group">
-                  <label>Enter License number</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="tokenId"
-                    placeholder="0"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-success"
-                    type="submit"
-                    value="Activate License"
-                  />
-                </div>
-              </form>
             </div>
             <hr />
             <div>
