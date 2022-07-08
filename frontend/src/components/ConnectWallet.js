@@ -12,7 +12,7 @@ export function ConnectWallet({ connectWallet, networkError, dismiss }) {
         </div>
         <div className="jumbotron text-center">
           <h4>
-            Please connect to your wallet to <br /> Purchase License
+            Please connect your wallet to <br /> Purchase License
           </h4>
           <button
             className="btn btn-warning"
