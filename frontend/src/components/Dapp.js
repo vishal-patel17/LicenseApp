@@ -7,7 +7,6 @@ import contractAddress from "../contracts/contract-address.json";
 
 import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
-import { Transfer } from "./Transfer";
 import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 
@@ -25,7 +24,7 @@ export class Dapp extends React.Component {
       transactionError: undefined,
       networkError: undefined,
       tokenId: undefined,
-      userAccount: undefined,
+      userAccount: "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       LicenseState: undefined,
       totalLicenses: undefined,
       tokenOwner: undefined,
@@ -34,6 +33,10 @@ export class Dapp extends React.Component {
 
     this.state = this.initialState;
   }
+
+  handlePublicAddrChange = (e) => {
+    this.setState({ userAccount: e.target.value });
+  };
 
   render() {
     if (window.ethereum === undefined) {
@@ -74,21 +77,42 @@ export class Dapp extends React.Component {
 
         <div className="col-12">
           <div className="jumbotron">
-            {
-              <Transfer
-                transferTokens={(address) => this._transferTokens(address)}
-              />
-            }
-          </div>
-          {this.state.tokenId && (
-            <div className="col-12">
-              Your License number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
-              <br />
-              Your account: <b>{this.state.userAccount}</b>
-              <br />
-              <hr />
+            <div>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  this._transferTokens(this.state.userAccount);
+                }}
+              >
+                <div className="heading">
+                  <h2>Generating License</h2>
+                </div>
+                <div className="form-group">
+                  <label>Public addresses </label> <br />
+                  <select name="PublicAddr" onChange={this.handlePublicAddrChange}>
+                    <option>0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc</option>
+                    <option>0x70997970c51812dc3a010c7d01b50e0d17dc79c8</option>
+                    <option>0x90f79bf6eb2c4f870365e785982e1f101e93b906</option>
+                    <option>0x15d34aaf54267db7d7c367839aaf71a00a2c6a65</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <input
+                    className="btn btn-primary"
+                    type="submit"
+                    value="Generate License"
+                  />
+                </div>
+              </form>
             </div>
-          )}
+            {this.state.tokenId && (
+              <div className="col-12">
+                Your License number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
+                <br />
+                Your account: <b>{this.state.userAccount}</b>
+              </div>
+            )}
+          </div>
           <div className="jumbotron">
             <div className="heading">
               <h2>License Status</h2>
@@ -173,7 +197,7 @@ export class Dapp extends React.Component {
           </div>
           <div className="jumbotron">
             <div className="heading">
-              <h2>Admin Functions</h2>
+              <h2>License Details</h2>
             </div>
             <div className="col-12">
               <form
@@ -317,6 +341,7 @@ export class Dapp extends React.Component {
         this.setState({ userAccount: account });
       });
     } catch (error) {
+      alert("Only owner can generate License");
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
         return;
       }
