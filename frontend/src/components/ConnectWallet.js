@@ -1,5 +1,4 @@
 import React from "react";
-
 import { NetworkErrorMessage } from "./NetworkErrorMessage";
 
 export function ConnectWallet({ connectWallet, networkError, dismiss }) {
@@ -8,14 +7,13 @@ export function ConnectWallet({ connectWallet, networkError, dismiss }) {
       <div className="row justify-content-md-center">
         <div className="col-12 text-center">
           {networkError && (
-            <NetworkErrorMessage
-              message={networkError}
-              dismiss={dismiss}
-            />
+            <NetworkErrorMessage message={networkError} dismiss={dismiss} />
           )}
         </div>
         <div className="jumbotron text-center">
-          <h4>Please connect to your wallet to <br /> Purchase License.</h4>
+          <h4>
+            Please connect to your wallet to <br /> Purchase License
+          </h4>
           <button
             className="btn btn-warning"
             type="button"

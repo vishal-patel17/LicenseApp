@@ -1,6 +1,6 @@
 {
-  "short_name": "Hardhat React Dapp",
-  "name": "Hardhat Create React Dapp Sample",
+  "short_name": "TR License App",
+  "name": "TR License Management App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,7 +9,5 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display": "standalone"
 }

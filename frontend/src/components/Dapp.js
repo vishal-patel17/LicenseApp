@@ -26,6 +26,7 @@ export class Dapp extends React.Component {
       tokenId: undefined,
       userAccount: "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       LicenseState: undefined,
+      activeLicenseState: undefined,
       totalLicenses: undefined,
       tokenOwner: undefined,
       totalLicensesProvided: undefined,
@@ -56,7 +57,7 @@ export class Dapp extends React.Component {
     return (
       <div className="container">
         <div className="heading">
-          <h1>License Management</h1>
+          <h1>TR License Management</h1>
         </div>
         <p className="ownerAddr">
           Owner's address: <b>{this.state.selectedAddress}</b>
@@ -147,6 +148,11 @@ export class Dapp extends React.Component {
                   />
                 </div>
               </form>
+              {this.state.activeLicenseState && (
+                <p>
+                  License <b>Activated</b> Successfully
+                </p>
+              )}
             </div>
           </div>
           <div className="col jumbotron">
@@ -372,21 +378,18 @@ export class Dapp extends React.Component {
     try {
       await this._token.activate(tokenId);
     } catch (error) {
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
+      this.setState({ transactionError: error });
+      return;
     }
-    alert("License activated successfully");
+    this.setState({ activeLicenseState: 1 });
   }
 
   async _getBalance(account) {
     try {
       var total = await this._token.balanceOf(account);
     } catch (error) {
-      alert("Please verify the account number");
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
+      this.setState({ transactionError: error });
+      return;
     }
     this.setState({ totalLicenses: total });
   }
@@ -395,10 +398,8 @@ export class Dapp extends React.Component {
     try {
       var owner = await this._token.ownerOf(tokenId);
     } catch (error) {
-      alert("Token not available");
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
+      this.setState({ transactionError: error });
+      return;
     }
     this.setState({ tokenOwner: owner });
   }
@@ -407,10 +408,8 @@ export class Dapp extends React.Component {
     try {
       var total = await this._token.totalSupply();
     } catch (error) {
-      alert("No Licenses provided");
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
+      this.setState({ transactionError: error });
+      return;
     }
     this.setState({ totalLicensesProvided: total });
   }
