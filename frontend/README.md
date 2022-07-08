@@ -1,6 +1,6 @@
 # Sample React Dapp
 
-This directory has a sample Dapp to interact with your contracts, built using
+This directory has a sample Dapp to interact with the contracts, built using
 React.
 
 ## Running the Dapp
@@ -21,13 +21,10 @@ This Dapp consists of multiple React Components, which you can find in
 
 Most of them are presentational components, have no logic, and just render HTML.
 
-The core functionality is implemented in `src/components/Dapp.js`, which has
-examples of how to connect to the user's wallet, initialize your Ethereum
+The core functionality is implemented in `src/components/Dapp.js`, which connects to the user's wallet, initialize the Ethereum
 connection and contracts, read from the contract's state, and perform License related operations.
 
-You can use the `Dapp` component as a starting point for your project. It has
-comments explaining each part of its code, and indicating what's specific to
-this project, and what can be reused.
+
 
 
 **Happy _building_!**
