@@ -1,6 +1,6 @@
-# Deploy to Local Network
+# 🌐 Deploy to Local Network
 
 This script is responsible for:
-- Getting signers address
-- Getting the License contract
-- Saving the compiled License files to the frontend dir: src/contracts
+- Getting <b>signers address</b>
+- Getting the <b>License contract</b>
+- Saving the compiled License files to the frontend dir: ```src/contracts```
