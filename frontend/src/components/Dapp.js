@@ -54,7 +54,7 @@ export class Dapp extends React.Component {
 
     // If everything is loaded, we render the application.
     return (
-      <div className="container p-4">
+      <div className="container">
         <div className="heading">
           <h1>License Management</h1>
         </div>
@@ -74,9 +74,8 @@ export class Dapp extends React.Component {
             )}
           </div>
         </div>
-
-        <div className="col-12">
-          <div className="jumbotron">
+        <div className="row justify-content-between">
+          <div className="col-5 jumbotron">
             <div>
               <form
                 onSubmit={(event) => {
@@ -116,11 +115,12 @@ export class Dapp extends React.Component {
               </div>
             )}
           </div>
-          <div className="jumbotron">
+          <div className="h-100"></div>
+          <div className="col-5 jumbotron">
             <div className="heading">
               <h2>License Status</h2>
             </div>
-            <div className="col-12">
+            <div>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -165,11 +165,11 @@ export class Dapp extends React.Component {
               )}
             </div>
           </div>
-          <div className="jumbotron">
+          <div className="col jumbotron">
             <div className="heading">
-              <h2>Activating License</h2>
+              <h2>License Functions</h2>
             </div>
-            <div className="col-12">
+            <div>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -197,12 +197,8 @@ export class Dapp extends React.Component {
                 </div>
               </form>
             </div>
-          </div>
-          <div className="jumbotron">
-            <div className="heading">
-              <h2>License Details</h2>
-            </div>
-            <div className="col-12">
+            <hr />
+            <div>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -236,7 +232,7 @@ export class Dapp extends React.Component {
               )}
             </div>
             <hr />
-            <div className="col-12">
+            <div>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -270,7 +266,7 @@ export class Dapp extends React.Component {
               )}
             </div>
             <hr />
-            <div className="col-12">
+            <div>
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
