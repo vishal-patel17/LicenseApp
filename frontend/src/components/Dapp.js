@@ -12,8 +12,6 @@ import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 
 const HARDHAT_NETWORK_ID = "1337";
 
-const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
-
 export class Dapp extends React.Component {
   constructor(props) {
     super(props);
@@ -52,8 +50,6 @@ export class Dapp extends React.Component {
         />
       );
     }
-
-    // If everything is loaded, we render the application.
     return (
       <div className="container">
         <div className="heading">
@@ -309,12 +305,8 @@ export class Dapp extends React.Component {
       return;
     }
 
-    this._initialize(selectedAddress);
-  }
-
-  _initialize(userAddress) {
     this.setState({
-      selectedAddress: userAddress,
+      selectedAddress: selectedAddress,
     });
 
     this._initializeEthers();
@@ -346,13 +338,8 @@ export class Dapp extends React.Component {
         this.setState({ userAccount: account });
       });
     } catch (error) {
-      alert("Only owner can generate License");
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
-
-      console.error(error);
-    } finally {
+      this.setState({ transactionError: error });
+      return;
     }
   }
 
@@ -360,11 +347,8 @@ export class Dapp extends React.Component {
     try {
       var state = await this._token.isLicenseActive(address, tokenId);
     } catch (error) {
-      alert("Invalid License number or this License does not belong to you");
-      this.setState({ LicenseState: undefined });
-      if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return;
-      }
+      this.setState({ LicenseState: undefined, transactionError: error });
+      return;
     }
     var value = parseInt(state, 10);
     if (value === 1) {
@@ -430,12 +414,10 @@ export class Dapp extends React.Component {
     return error.message;
   }
 
-  // This method resets the state
   _resetState() {
     this.setState(this.initialState);
   }
 
-  // This method checks if Metamask selected network is Localhost:8545
   _checkNetwork() {
     if (window.ethereum.networkVersion === HARDHAT_NETWORK_ID) {
       return true;
