@@ -1,3 +1,7 @@
+:root {
+    background-color: rgb(241, 241, 243);
+}
+
 .heading {
     text-align: center;
 }
@@ -9,4 +13,29 @@
 
 .container {
     padding-top: 20px;
+}
+
+.pw {
+    padding-top: 20px;
+    background-color: rgb(52, 58, 64);
+    height: 27vh;
+    width: 100vw;
+}
+
+.cw {
+    margin-top: 5vh;
+    height: 70vh;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white !important;
+}
+
+.cwContent {
+    padding-left: 10vw;
+    padding-right: 10vw;
+
+}
+
+.navbar {
+    color: rgb(43, 45, 60) !important;
 }
