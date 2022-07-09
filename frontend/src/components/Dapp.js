@@ -67,9 +67,7 @@ export class Dapp extends React.Component {
                 )}
                 {this.state.transactionError && (
                   <TransactionErrorMessage
-                    message={this._getRpcErrorMessage(
-                      this.state.transactionError
-                    )}
+                    message={this.state.transactionError}
                     dismiss={() => this._dismissTransactionError()}
                   />
                 )}
@@ -80,7 +78,9 @@ export class Dapp extends React.Component {
                 <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Generate New License number</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will return a unique license number</p>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will return a unique license number
+                    </p>
 
                     <div>
                       <form
@@ -90,7 +90,7 @@ export class Dapp extends React.Component {
                         }}
                       >
                         <div className="form-group">
-                          <label>Public addresses </label> {" "}
+                          <label>Public addresses </label>{" "}
                           <select
                             name="PublicAddr"
                             onChange={this.handlePublicAddrChange}
@@ -132,7 +132,9 @@ export class Dapp extends React.Component {
                 <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Activate License</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will activate license if all the conditions are met</p>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will activate license if all the conditions are met
+                    </p>
                     <div>
                       <form
                         onSubmit={(event) => {
@@ -143,14 +145,18 @@ export class Dapp extends React.Component {
                         }}
                       >
                         <div className="form-group">
-                          <label>Enter License number</label> {" "}
+                          <label>Enter License number</label>{" "}
                           <input
                             type="number"
                             className="form-control"
                             name="tokenId"
                             placeholder="0"
                             required
-                            style={{ display: "inline", width: "70px", height: "25px" }}
+                            style={{
+                              display: "inline",
+                              width: "70px",
+                              height: "25px",
+                            }}
                           />
                         </div>
                         <div className="form-group">
@@ -177,7 +183,9 @@ export class Dapp extends React.Component {
                 <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Check License Status</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will return the satus of your License</p>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will return the satus of your License
+                    </p>
                     <div>
                       <form
                         onSubmit={(event) => {
@@ -189,25 +197,33 @@ export class Dapp extends React.Component {
                         }}
                       >
                         <div className="form-group">
-                          <label>Public address</label> {" "}
+                          <label>Public address</label>{" "}
                           <input
                             type="text"
                             className="form-control"
                             name="publicAddr"
                             defaultValue={this.state.userAccount}
                             required
-                            style={{ display: "inline", width: "390px", height: "25px" }}
+                            style={{
+                              display: "inline",
+                              width: "390px",
+                              height: "25px",
+                            }}
                           />
                         </div>
                         <div className="form-group">
-                          <label>Enter License number</label> {" "}
+                          <label>Enter License number</label>{" "}
                           <input
                             type="number"
                             className="form-control"
                             name="tokenId"
                             placeholder="0"
                             required
-                            style={{ display: "inline", width: "70px", height: "25px" }}
+                            style={{
+                              display: "inline",
+                              width: "70px",
+                              height: "25px",
+                            }}
                           />
                         </div>
                         <div className="form-group">
@@ -230,8 +246,13 @@ export class Dapp extends React.Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h3 className="card-title">Get Total Licenses Purchased by User</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will return total number of licenses purchased by the user</p>
+                    <h3 className="card-title">
+                      Get Total Licenses Purchased by User
+                    </h3>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will return total number of licenses purchased by the
+                      user
+                    </p>
                     <div>
                       <form
                         onSubmit={(event) => {
@@ -265,11 +286,6 @@ export class Dapp extends React.Component {
                         </p>
                       )}
                     </div>
-                    {this.state.activeLicenseState && (
-                      <p>
-                        License <b>Activated</b> Successfully
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>
@@ -280,7 +296,9 @@ export class Dapp extends React.Component {
                 <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Get License Owner</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will return the owner address of the license</p>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will return the owner address of the license
+                    </p>
                     <div>
                       <form
                         onSubmit={(event) => {
@@ -298,7 +316,11 @@ export class Dapp extends React.Component {
                             name="tokenId"
                             placeholder="0"
                             required
-                            style={{ display: "inline", width: "70px", height: "25px" }}
+                            style={{
+                              display: "inline",
+                              width: "70px",
+                              height: "25px",
+                            }}
                           />
                         </div>
                         <div className="form-group">
@@ -311,7 +333,8 @@ export class Dapp extends React.Component {
                       </form>
                       {this.state.tokenOwner && (
                         <p>
-                          Owner of this License is: <b>{this.state.tokenOwner}</b>
+                          Owner of this License is:{" "}
+                          <b>{this.state.tokenOwner}</b>
                         </p>
                       )}
                     </div>
@@ -321,8 +344,12 @@ export class Dapp extends React.Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h3 className="card-title">Get Total Licenses provided by TR</h3>
-                    <p className="card-text" style={{ color: "gray" }}>This will return total number of licenses TR provided</p>
+                    <h3 className="card-title">
+                      Get Total Licenses provided by TR
+                    </h3>
+                    <p className="card-text" style={{ color: "gray" }}>
+                      This will return total number of licenses TR provided
+                    </p>
                     <div>
                       <form
                         onSubmit={(event) => {
@@ -341,7 +368,9 @@ export class Dapp extends React.Component {
                       {this.state.totalLicensesProvided && (
                         <p>
                           Total Licenses Provided:{" "}
-                          <b>{parseInt(this.state.totalLicensesProvided, 10)}</b>
+                          <b>
+                            {parseInt(this.state.totalLicensesProvided, 10)}
+                          </b>
                         </p>
                       )}
                     </div>
@@ -397,7 +426,10 @@ export class Dapp extends React.Component {
         this.setState({ userAccount: account });
       });
     } catch (error) {
-      this.setState({ transactionError: error });
+      this.setState({
+        transactionError:
+          "Error generating license / Only Owner can generate license",
+      });
       return;
     }
   }
@@ -406,7 +438,11 @@ export class Dapp extends React.Component {
     try {
       var state = await this._token.isLicenseActive(address, tokenId);
     } catch (error) {
-      this.setState({ LicenseState: undefined, transactionError: error });
+      this.setState({
+        LicenseState: undefined,
+        transactionError:
+          "Invalid License / License does not belong to the mentioned user",
+      });
       return;
     }
     var value = parseInt(state, 10);
@@ -421,7 +457,9 @@ export class Dapp extends React.Component {
     try {
       await this._token.activate(tokenId);
     } catch (error) {
-      this.setState({ transactionError: error });
+      this.setState({
+        transactionError: "License already active / License not available",
+      });
       return;
     }
     this.setState({ activeLicenseState: 1 });
@@ -431,7 +469,7 @@ export class Dapp extends React.Component {
     try {
       var total = await this._token.balanceOf(account);
     } catch (error) {
-      this.setState({ transactionError: error });
+      this.setState({ transactionError: "Invalid address / No license found" });
       return;
     }
     this.setState({ totalLicenses: total });
@@ -441,7 +479,7 @@ export class Dapp extends React.Component {
     try {
       var owner = await this._token.ownerOf(tokenId);
     } catch (error) {
-      this.setState({ transactionError: error });
+      this.setState({ transactionError: "Invalid license number" });
       return;
     }
     this.setState({ tokenOwner: owner });
@@ -451,7 +489,7 @@ export class Dapp extends React.Component {
     try {
       var total = await this._token.totalSupply();
     } catch (error) {
-      this.setState({ transactionError: error });
+      this.setState({ transactionError: "Error getting total lincenses" });
       return;
     }
     this.setState({ totalLicensesProvided: total });
@@ -466,10 +504,6 @@ export class Dapp extends React.Component {
   }
 
   _getRpcErrorMessage(error) {
-    if (error.data) {
-      return error.data.message;
-    }
-
     return error.message;
   }
 
