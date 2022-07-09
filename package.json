@@ -1,13 +1,13 @@
 {
   "name": "tr-license-management-app",
   "version": "1.0.0",
-  "description": "Using blockchain technology for generation, storing and distribution of Licenses for various TR products.",
+  "description": "Using blockchain technology with web3.0 for generation, storage and distribution of Licenses for various TR products.",
   "repository": {
     "type": "git",
     "url": "https://github.com/vishal-patel17/LicenseApp.git"
   },
   "author": "Vishal",
-  "license": "Unlicensed",
+  "license": "GPL",
   "homepage": "https://github.com/vishal-patel17/LicenseApp.git#readme",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",

@@ -1,10 +1,9 @@
 import React from "react";
 
-import { ethers } from "ethers";
-
 import TokenArtifact from "../contracts/LicenseToken.json";
 import contractAddress from "../contracts/contract-address.json";
 
+import { ethers } from "ethers";
 import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
 import { TransactionErrorMessage } from "./TransactionErrorMessage";
