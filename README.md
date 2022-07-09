@@ -1,6 +1,6 @@
 # 🔗 Blockchain for License Management
 
-Using blockchain technology with web3.0 for generation, storing and distribution of Licenses for various TR products.
+Using ```blockchain``` technology with ```web3.0``` for generation, storage and distribution of <b>Licenses</b> for various TR products.
 
 ## 🎨 Design
 
@@ -16,11 +16,11 @@ Run the following commands in your terminal or Git bash cmd:
   cd LicenseApp
   npm install
 ```
-- Once installed, let's run [Hardhat's](https://hardhat.org/) testing network:
+- Once installed, run [Hardhat's](https://hardhat.org/) testing network. This will also give you a list of addresses for testing
 ```bash
   npx hardhat node
 ```
-- Then, on a new terminal, go to the repository's root folder and run this command to deploy your contract to the localhost:
+- Then, on a new terminal, go to the repository's root folder and run this command to <b>deploy</b> your contract to the localhost network. This will also <b>compile</b> your Smart Contract:
 ```bash
   npx hardhat run scripts/deploy.js --network localhost
 ```
@@ -31,7 +31,7 @@ Run the following commands in your terminal or Git bash cmd:
   - Chain ID: <b>1337</b>
   - Currency Symbol: <b>TRT</b>
 
-- Save the above configuration and finally, we run the frontend with:
+- Save the above configuration and finally, run the frontend with:
 ```bash
   cd frontend
   npm install
