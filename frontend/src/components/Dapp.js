@@ -81,7 +81,7 @@ export class Dapp extends React.Component {
                 }}
               >
                 <div className="heading">
-                  <h2>Generating License</h2>
+                  <h2>Generate a new License</h2>
                 </div>
                 <div className="form-group">
                   <label>Public addresses </label> <br />
@@ -99,7 +99,7 @@ export class Dapp extends React.Component {
                   <input
                     className="btn btn-primary"
                     type="submit"
-                    value="Generate License"
+                    value="Generate"
                   />
                 </div>
               </form>
@@ -140,7 +140,7 @@ export class Dapp extends React.Component {
                   <input
                     className="btn btn-success"
                     type="submit"
-                    value="Activate License"
+                    value="Activate"
                   />
                 </div>
               </form>
@@ -195,7 +195,7 @@ export class Dapp extends React.Component {
               </form>
               {this.state.LicenseState && (
                 <p>
-                  Your License is currently <b>{this.state.LicenseState}</b>
+                  License is currently <b>{this.state.LicenseState}</b>
                 </p>
               )}
             </div>
@@ -263,7 +263,7 @@ export class Dapp extends React.Component {
               </form>
               {this.state.tokenOwner && (
                 <p>
-                  Owner of this token is: <b>{this.state.tokenOwner}</b>
+                  Owner of this License is: <b>{this.state.tokenOwner}</b>
                 </p>
               )}
             </div>

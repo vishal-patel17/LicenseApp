@@ -33,9 +33,18 @@
 .cwContent {
     padding-left: 10vw;
     padding-right: 10vw;
-
 }
 
 .navbar {
     color: rgb(43, 45, 60) !important;
+}
+
+.imgWallet {
+    height: 25vh;
+    /* width: 20vw; */
+}
+
+.btnConnectWallet {
+    background-color: rgb(245, 122, 56) !important;
+    color: rgb(238, 255, 255) !important;
 }
