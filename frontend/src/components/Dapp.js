@@ -51,244 +51,259 @@ export class Dapp extends React.Component {
       );
     }
     return (
-      <div className="container">
-        <div className="heading">
-          <h1>TR License Management</h1>
-        </div>
-        <p className="ownerAddr">
-          Owner's address: <b>{this.state.selectedAddress}</b>
-        </p>
-        <div className="row">
-          <div className="col-12">
-            {this.state.txBeingSent && (
-              <WaitingForTransactionMessage txHash={this.state.txBeingSent} />
-            )}
-            {this.state.transactionError && (
-              <TransactionErrorMessage
-                message={this._getRpcErrorMessage(this.state.transactionError)}
-                dismiss={() => this._dismissTransactionError()}
-              />
-            )}
-          </div>
-        </div>
-        <div className="row justify-content-between">
-          <div className="col-5 jumbotron">
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  this._transferTokens(this.state.userAccount);
-                }}
-              >
-                <div className="heading">
-                  <h2>Generate a new License</h2>
-                </div>
-                <div className="form-group">
-                  <label>Public addresses </label> <br />
-                  <select
-                    name="PublicAddr"
-                    onChange={this.handlePublicAddrChange}
-                  >
-                    <option>0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc</option>
-                    <option>0x70997970c51812dc3a010c7d01b50e0d17dc79c8</option>
-                    <option>0x90f79bf6eb2c4f870365e785982e1f101e93b906</option>
-                    <option>0x15d34aaf54267db7d7c367839aaf71a00a2c6a65</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Generate"
-                  />
-                </div>
-              </form>
-            </div>
-            {this.state.tokenId && (
+      <div className="container-fluid pw">
+        <div className="cwContent">
+          <h3 style={{ color: "white" }}>TR License Management</h3>
+          <br />
+          <h5 style={{ color: "grey" }}>
+            Owner's address: <b>{this.state.selectedAddress}</b>
+          </h5>
+          <div className="jumbotron align-items-center justify-content-center cw">
+            <div className="row">
               <div className="col-12">
-                Your License number: <b>{parseInt(this.state.tokenId, 10)}</b>{" "}
-                <br />
-                Your account: <b>{this.state.userAccount}</b>
+                {this.state.txBeingSent && (
+                  <WaitingForTransactionMessage
+                    txHash={this.state.txBeingSent}
+                  />
+                )}
+                {this.state.transactionError && (
+                  <TransactionErrorMessage
+                    message={this._getRpcErrorMessage(
+                      this.state.transactionError
+                    )}
+                    dismiss={() => this._dismissTransactionError()}
+                  />
+                )}
               </div>
-            )}
-          </div>
-          <div className="h-100"></div>
-          <div className="col-5 jumbotron">
-            <div className="heading">
-              <h2>Activate License</h2>
             </div>
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.target);
-                  const tokenId = formData.get("tokenId");
-                  this._activateLicense(tokenId);
-                }}
-              >
-                <div className="form-group">
-                  <label>Enter License number</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="tokenId"
-                    placeholder="0"
-                    required
-                  />
+            <div className="row justify-content-between">
+              <div className="col-5 jumbotron">
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      this._transferTokens(this.state.userAccount);
+                    }}
+                  >
+                    <div className="heading">
+                      <h2>Generate a new License</h2>
+                    </div>
+                    <div className="form-group">
+                      <label>Public addresses </label> <br />
+                      <select
+                        name="PublicAddr"
+                        onChange={this.handlePublicAddrChange}
+                      >
+                        <option>
+                          0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+                        </option>
+                        <option>
+                          0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+                        </option>
+                        <option>
+                          0x90f79bf6eb2c4f870365e785982e1f101e93b906
+                        </option>
+                        <option>
+                          0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+                        </option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Generate"
+                      />
+                    </div>
+                  </form>
                 </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-success"
-                    type="submit"
-                    value="Activate"
-                  />
+                {this.state.tokenId && (
+                  <div className="col-12">
+                    Your License number:{" "}
+                    <b>{parseInt(this.state.tokenId, 10)}</b> <br />
+                    Your account: <b>{this.state.userAccount}</b>
+                  </div>
+                )}
+              </div>
+              <div className="h-100"></div>
+              <div className="col-5 jumbotron">
+                <div className="heading">
+                  <h2>Activate License</h2>
                 </div>
-              </form>
-              {this.state.activeLicenseState && (
-                <p>
-                  License <b>Activated</b> Successfully
-                </p>
-              )}
-            </div>
-          </div>
-          <div className="col jumbotron">
-            <div className="heading">
-              <h2>License Information</h2>
-            </div>
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.target);
-                  const userAddr = formData.get("publicAddr");
-                  const tokenId = formData.get("tokenId");
-                  this._isLicenseActive(userAddr, tokenId);
-                }}
-              >
-                <div className="form-group">
-                  <label>Public address</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="publicAddr"
-                    defaultValue={this.state.userAccount}
-                    required
-                  />
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      const formData = new FormData(event.target);
+                      const tokenId = formData.get("tokenId");
+                      this._activateLicense(tokenId);
+                    }}
+                  >
+                    <div className="form-group">
+                      <label>Enter License number</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="tokenId"
+                        placeholder="0"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="btn btn-success"
+                        type="submit"
+                        value="Activate"
+                      />
+                    </div>
+                  </form>
+                  {this.state.activeLicenseState && (
+                    <p>
+                      License <b>Activated</b> Successfully
+                    </p>
+                  )}
                 </div>
-                <div className="form-group">
-                  <label>Enter License number</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="tokenId"
-                    placeholder="0"
-                    required
-                  />
+              </div>
+              <div className="col jumbotron">
+                <div className="heading">
+                  <h2>License Information</h2>
                 </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-warning"
-                    type="submit"
-                    value="Check License Status"
-                  />
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      const formData = new FormData(event.target);
+                      const userAddr = formData.get("publicAddr");
+                      const tokenId = formData.get("tokenId");
+                      this._isLicenseActive(userAddr, tokenId);
+                    }}
+                  >
+                    <div className="form-group">
+                      <label>Public address</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="publicAddr"
+                        defaultValue={this.state.userAccount}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Enter License number</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="tokenId"
+                        placeholder="0"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="btn btn-warning"
+                        type="submit"
+                        value="Check License Status"
+                      />
+                    </div>
+                  </form>
+                  {this.state.LicenseState && (
+                    <p>
+                      License is currently <b>{this.state.LicenseState}</b>
+                    </p>
+                  )}
                 </div>
-              </form>
-              {this.state.LicenseState && (
-                <p>
-                  License is currently <b>{this.state.LicenseState}</b>
-                </p>
-              )}
-            </div>
-            <hr />
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.target);
-                  const userAddr = formData.get("publicAddr");
-                  this._getBalance(userAddr);
-                }}
-              >
-                <div className="form-group">
-                  <label>Enter public address</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="publicAddr"
-                    required
-                  />
+                <hr />
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      const formData = new FormData(event.target);
+                      const userAddr = formData.get("publicAddr");
+                      this._getBalance(userAddr);
+                    }}
+                  >
+                    <div className="form-group">
+                      <label>Enter public address</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="publicAddr"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Get Total Licenses"
+                      />
+                    </div>
+                  </form>
+                  {this.state.totalLicenses && (
+                    <p>
+                      Total Licenses available:{" "}
+                      <b>{parseInt(this.state.totalLicenses, 10)}</b>
+                    </p>
+                  )}
                 </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Get Total Licenses"
-                  />
+                <hr />
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      const formData = new FormData(event.target);
+                      const tokenId = formData.get("tokenId");
+                      this._getOwner(tokenId);
+                    }}
+                  >
+                    <div className="form-group">
+                      <label>Enter License number</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="tokenId"
+                        placeholder="0"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Get Owner"
+                      />
+                    </div>
+                  </form>
+                  {this.state.tokenOwner && (
+                    <p>
+                      Owner of this License is: <b>{this.state.tokenOwner}</b>
+                    </p>
+                  )}
                 </div>
-              </form>
-              {this.state.totalLicenses && (
-                <p>
-                  Total Licenses available:{" "}
-                  <b>{parseInt(this.state.totalLicenses, 10)}</b>
-                </p>
-              )}
-            </div>
-            <hr />
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.target);
-                  const tokenId = formData.get("tokenId");
-                  this._getOwner(tokenId);
-                }}
-              >
-                <div className="form-group">
-                  <label>Enter License number</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="tokenId"
-                    placeholder="0"
-                    required
-                  />
+                <hr />
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      this._getTotalSupply();
+                    }}
+                  >
+                    <div className="form-group">
+                      <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Get Total Licenses Provided"
+                      />
+                    </div>
+                  </form>
+                  {this.state.totalLicensesProvided && (
+                    <p>
+                      Total Licenses Provided:{" "}
+                      <b>{parseInt(this.state.totalLicensesProvided, 10)}</b>
+                    </p>
+                  )}
                 </div>
-                <div className="form-group">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Get Owner"
-                  />
-                </div>
-              </form>
-              {this.state.tokenOwner && (
-                <p>
-                  Owner of this License is: <b>{this.state.tokenOwner}</b>
-                </p>
-              )}
-            </div>
-            <hr />
-            <div>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  this._getTotalSupply();
-                }}
-              >
-                <div className="form-group">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Get Total Licenses Provided"
-                  />
-                </div>
-              </form>
-              {this.state.totalLicensesProvided && (
-                <p>
-                  Total Licenses Provided:{" "}
-                  <b>{parseInt(this.state.totalLicensesProvided, 10)}</b>
-                </p>
-              )}
+              </div>
             </div>
           </div>
         </div>
