@@ -30,6 +30,14 @@
     background-color: white !important;
 }
 
+.dcw {
+    margin-top: 5vh;
+    height: 150vh;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white !important;
+}
+
 .cwContent {
     padding-left: 10vw;
     padding-right: 10vw;
