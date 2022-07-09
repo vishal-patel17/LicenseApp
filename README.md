@@ -47,9 +47,11 @@ Run the following commands in your terminal or Git bash cmd:
 
 ## 📸 Screenshots
 
-<img width="382" alt="Screenshot 2022-07-08 at 11 30 24 PM" src="https://user-images.githubusercontent.com/10336383/178048858-99d3d048-a90d-41b2-a475-dbe319ed9752.png">
+![HomePage](https://user-images.githubusercontent.com/10336383/178111456-1c7d34f3-914a-46f5-8705-45e562cbc28d.PNG)
 
-<img width="931" alt="Screenshot 2022-07-08 at 11 34 25 PM" src="https://user-images.githubusercontent.com/10336383/178048599-440f7d87-7ca8-4bbe-ad8e-6828385e41a7.png">
+
+![MainPage](https://user-images.githubusercontent.com/10336383/178111491-9f0ec8ee-8b4a-48cc-ae32-6347262b3345.PNG)
+
 
 
 
