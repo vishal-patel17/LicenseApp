@@ -77,7 +77,7 @@ export class Dapp extends React.Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h3 className="card-title">Generate New License number</h3>
+                    <h3 className="card-title">Generate New License </h3>
                     <p className="card-text" style={{ color: "gray" }}>
                       This will return a unique license number
                     </p>
@@ -184,7 +184,7 @@ export class Dapp extends React.Component {
                   <div className="card-body">
                     <h3 className="card-title">Check License Status</h3>
                     <p className="card-text" style={{ color: "gray" }}>
-                      This will return the satus of your License
+                      This will return the status of your License [Active, Inactive, Expired]
                     </p>
                     <div>
                       <form
@@ -441,7 +441,7 @@ export class Dapp extends React.Component {
       this.setState({
         LicenseState: undefined,
         transactionError:
-          "Invalid License / License does not belong to the mentioned user",
+          "Invalid License / License does not belong to the provided address",
       });
       return;
     }
