@@ -38,7 +38,6 @@ contract LicenseToken is owned {
 
     event LicenseGiven(address account, uint256 tokenId);
     event Transfer(address from, address to, uint256 tokenId);
-    event Approval(address owner, address approved, uint256 tokenId);
 
     constructor() {}
 

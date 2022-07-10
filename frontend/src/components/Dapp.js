@@ -450,6 +450,8 @@ export class Dapp extends React.Component {
       this.setState({ LicenseState: "INACTIVE" });
     } else if (value === 0) {
       this.setState({ LicenseState: "ACTIVE" });
+    } else if (value === 2) {
+      this.setState({ LicenseState: "EXPIRED" });
     }
   }
 
