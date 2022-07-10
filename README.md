@@ -59,4 +59,5 @@ Run the following commands in your terminal or Git bash cmd:
 <br />
 <br />
 <br />
-**Happy _building_!**
+
+*Happy _building_!*
