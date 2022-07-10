@@ -197,7 +197,7 @@ export class Dapp extends React.Component {
                         }}
                       >
                         <div className="form-group">
-                          <label>Public address</label>{" "}
+                          <label>Enter public address</label>{" "}
                           <input
                             type="text"
                             className="form-control"
@@ -206,8 +206,8 @@ export class Dapp extends React.Component {
                             required
                             style={{
                               display: "inline",
-                              width: "390px",
-                              height: "25px",
+                              // width: "410px",
+                              // height: "25px",
                             }}
                           />
                         </div>
