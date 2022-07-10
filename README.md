@@ -51,13 +51,12 @@ Run the following commands in your terminal or Git bash cmd:
 
 ## 📸 Screenshots
 
-![HomePage](https://user-images.githubusercontent.com/10336383/178111456-1c7d34f3-914a-46f5-8705-45e562cbc28d.PNG)
+![ConnectWallet](https://user-images.githubusercontent.com/10336383/178144902-ac6dd427-12e0-48ad-9140-920b7f2fa2f7.PNG)
 
 
-![MainPage](https://user-images.githubusercontent.com/10336383/178111491-9f0ec8ee-8b4a-48cc-ae32-6347262b3345.PNG)
+![Home](https://user-images.githubusercontent.com/10336383/178144910-65c345f9-f448-4a32-ba51-6a5a39ac7aae.PNG)
 
-
-
-
-
+<br />
+<br />
+<br />
 **Happy _building_!**
