@@ -184,7 +184,8 @@ export class Dapp extends React.Component {
                   <div className="card-body">
                     <h3 className="card-title">Check License Status</h3>
                     <p className="card-text" style={{ color: "gray" }}>
-                      This will return the status of your License [Active, Inactive, Expired]
+                      This will return the status of your License [Active,
+                      Inactive, Expired]
                     </p>
                     <div>
                       <form
