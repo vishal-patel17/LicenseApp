@@ -9,8 +9,8 @@ Using ```blockchain``` technology with ```web3.0``` for generation, storage and 
 ## 🚀 Quick Start
 
 - Make sure you have following installed before we continue:
-  - <a href="https://git-scm.com/downloads" target="_blank">Git</a>
-  - <a href="https://nodejs.org/en/download/" target="_blank">Nodejs</a>
+  - [Git](https://git-scm.com/downloads)
+  - [Nodejs](https://nodejs.org/en/download/)
     
 - Then clone this repository and install its dependencies.
 Run the following commands in your terminal or Git bash cmd:
@@ -20,7 +20,7 @@ Run the following commands in your terminal or Git bash cmd:
   cd LicenseApp
   npm install
 ```
-- Once installed, run <a href="https://hardhat.org/" target="_blank">Hardhat's</a> testing network. This will also give you a list of addresses for testing
+- Once installed, run [Hardhat's](https://hardhat.org/) testing network. This will also give you a list of addresses for testing
 ```bash
   npx hardhat node
 ```
@@ -28,7 +28,7 @@ Run the following commands in your terminal or Git bash cmd:
 ```bash
   npx hardhat run scripts/deploy.js --network localhost
 ```
-- Add a custom <a href="https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC" target="_blank">RPC network</a> in your Metamask wallet for testing with the following configuration:
+- Add a custom [RPC network](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC) in your Metamask wallet for testing with the following configuration:
 
   - Network name: <b>TR Test Network</b>
   - New RPC URL: <b>http://127.0.0.1:8545/</b>
