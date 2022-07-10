@@ -8,7 +8,11 @@ Using ```blockchain``` technology with ```web3.0``` for generation, storage and 
 
 ## 🚀 Quick Start
 
-- The first thing you need to do is clone this repository and install its dependencies.
+- Make sure you have following installed before we continue:
+  - [Git](https://git-scm.com/downloads)
+  - [Nodejs](https://nodejs.org/en/download/)
+    
+- Then clone this repository and install its dependencies.
 Run the following commands in your terminal or Git bash cmd:
 
 ```bash
