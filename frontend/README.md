@@ -1,6 +1,6 @@
 # 🕸️ A React Dapp
 
-This directory has a <b>De-Centralised App</b> (Dapp) to interact with the Smart Contracts, built using
+This directory has a <b>De-Centralised App</b> (Dapp) to interact with the Smart Contract, built using
 <b>React</b>.
 
 ## 🏃 Running the Dapp
