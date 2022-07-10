@@ -1,6 +1,6 @@
 # 🔗 Blockchain for License Management
 
-Using ```blockchain``` technology with ```web3.0``` for generation, storage and distribution of **Licenses** for various TR products.
+Using ```blockchain``` technology with ```web3.0``` for generation, storage and distribution of **Licenses** for digital products.
 
 ## 🎨 Design
 
@@ -56,5 +56,5 @@ Run the following commands in your terminal or Git bash cmd:
 
 ![Home](https://user-images.githubusercontent.com/10336383/178144910-65c345f9-f448-4a32-ba51-6a5a39ac7aae.PNG)
 
-
+</br></br>
 *Happy _building_!*
