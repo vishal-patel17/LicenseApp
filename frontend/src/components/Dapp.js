@@ -297,7 +297,7 @@ export class Dapp extends React.Component {
                   <div className="card-body">
                     <h3 className="card-title">Get License Owner</h3>
                     <p className="card-text" style={{ color: "gray" }}>
-                      This will return the owner address of the license
+                      This will return the owner's address of the license
                     </p>
                     <div>
                       <form
