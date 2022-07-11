@@ -33,7 +33,7 @@ Run the following commands in your terminal or Git bash cmd:
   - Network name: **TR Test Network**
   - New RPC URL: **http://127.0.0.1:8545/**
   - Chain ID: **1337**
-  - Currency Symbol: **TRT**
+  - Currency Symbol: **MyToken**
 
 - **Save** the above configuration and finally, run the frontend with:
 ```bash
