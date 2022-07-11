@@ -18,7 +18,7 @@ export function ConnectWallet({ connectWallet, networkError, dismiss }) {
           <div className="container position-relative">
             <img src={img} alt="wallet" className="imgWallet" />
             <br />
-            <h4>Please, connect your wallet</h4>
+            <h4>Please, connect your metamask wallet</h4>
             <br />
             <h6 style={{ color: "grey" }}>
               Please connect your wallet to purchase, activate and get License
