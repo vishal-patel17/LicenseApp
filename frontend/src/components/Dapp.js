@@ -52,7 +52,7 @@ export class Dapp extends React.Component {
     return (
       <div className="container-fluid pw">
         <div className="cwContent">
-          <h3 style={{ color: "white" }}>TR License Management</h3>
+          <h3 style={{ color: "white" }}>License Management</h3>
           <br />
           <h5 style={{ color: "grey" }}>
             Owner's address: <b>{this.state.selectedAddress}</b>
@@ -345,11 +345,10 @@ export class Dapp extends React.Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h3 className="card-title">
-                      Get Total Licenses provided by TR
-                    </h3>
+                    <h3 className="card-title">Get Total Licenses provided</h3>
                     <p className="card-text" style={{ color: "gray" }}>
-                      This will return total number of licenses TR provided
+                      This will return total number of licenses provided by the
+                      owner
                     </p>
                     <div>
                       <form

@@ -11,7 +11,7 @@ export function ConnectWallet({ connectWallet, networkError, dismiss }) {
         )}
       </div>
       <div className="cwContent">
-        <h3 style={{ color: "white" }}>Welcome to TR License Management App</h3>
+        <h3 style={{ color: "white" }}>Welcome to License Management App</h3>
         <br />
         <h5 style={{ color: "grey" }}>Powered by Blockchain and Web3.0</h5>
         <div className="jumbotron align-items-center justify-content-center cw">
