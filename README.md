@@ -2,9 +2,6 @@
 
 Using ```blockchain``` technology with ```web3.0``` for generation, storage and distribution of **Licenses** for digital products.
 
-## 🎨 Design
-
-![Logo](https://lucid.app/publicSegments/view/c815ebb5-e01d-4cbb-917a-a89e60e89e32/image.png)
 
 ## 🚀 Quick Start
 
@@ -43,18 +40,10 @@ Run the following commands in your terminal or Git bash cmd:
 ```
 
 
-
 ## ⚙️ Troubleshooting
 
 - ```Invalid nonce``` errors: if you are seeing this error on the ```npx hardhat node``` console, try **resetting** your Metamask account. This will reset the account's transaction history and also the nonce. Open Metamask, click on your account followed by ```Settings > Advanced > Reset Account```.
 
-
-## 📸 Screenshots
-
-![ConnectWallet](https://user-images.githubusercontent.com/10336383/178144902-ac6dd427-12e0-48ad-9140-920b7f2fa2f7.PNG)
-
-
-![Home](https://user-images.githubusercontent.com/10336383/178144910-65c345f9-f448-4a32-ba51-6a5a39ac7aae.PNG)
 
 </br></br>
 *Happy _building_!*
