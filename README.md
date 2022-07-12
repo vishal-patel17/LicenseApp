@@ -30,7 +30,7 @@ Run the following commands in your terminal or Git bash cmd:
 ```
 - Add a custom [RPC network](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC) in your Metamask wallet for testing with the following configuration:
 
-  - Network name: **TR Test Network**
+  - Network name: **MyTestNetwork**
   - New RPC URL: **http://127.0.0.1:8545/**
   - Chain ID: **1337**
   - Currency Symbol: **MyToken**
