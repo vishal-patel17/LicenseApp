@@ -10,6 +10,7 @@ import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 
 const HARDHAT_NETWORK_ID = "1337";
+const GOERLI_NETWORK_ID = "5";
 
 export class Dapp extends React.Component {
   constructor(props) {
@@ -514,7 +515,10 @@ export class Dapp extends React.Component {
   }
 
   _checkNetwork() {
-    if (window.ethereum.networkVersion === HARDHAT_NETWORK_ID) {
+    if (
+      window.ethereum.networkVersion === HARDHAT_NETWORK_ID ||
+      window.ethereum.networkVersion === GOERLI_NETWORK_ID
+    ) {
       return true;
     }
 
