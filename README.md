@@ -21,7 +21,7 @@ Run the following commands in your terminal or Git bash cmd:
 ```bash
   npx hardhat node
 ```
-- Then, on a new terminal, go to the repository's root folder and run this command to **deploy** your contract to the localhost network. This will also **compile** your Smart Contract:
+- Then, on a new terminal, go to the repository's root folder and run this command to **deploy** your contract to the localhost network. This will also **compile** your Smart Contrac. In case you want to test in **Goerli** network, replace localhost with ```goerli```
 ```bash
   npx hardhat run scripts/deploy.js --network localhost
 ```
